@@ -193,7 +193,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 - (void)setContentInset
 {
     
-    NSLog(@"inset:%ld,offset:%ld",(long)self.scrollView.contentInset.top,(long)self.scrollView.contentOffset.y);
+    //NSLog(@"inset:%ld,offset:%ld",(long)self.scrollView.contentInset.top,(long)self.scrollView.contentOffset.y);
     // Don't mess the scrollview at first start
     if(self.scrollView.contentInset.top==0 && self.scrollView.contentOffset.y==0){
         return;
@@ -223,7 +223,17 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         bool isViewHidden = view.hidden || view.alpha == 0.0f;
         if (isBackgroundView || isViewHidden)
             continue;
-        view.alpha = alpha;
+        
+        // Look for classes to ignore
+        BOOL ignoreClass = FALSE;
+        if(self.alphaIgnoredClasses != nil) {
+            for(NSString *class in self.alphaIgnoredClasses) {
+                if([view isKindOfClass:NSClassFromString(class)])
+                    ignoreClass = TRUE;
+            }
+        }
+        if(!ignoreClass)
+            view.alpha = alpha;
     }
     
     self.frame = frame;
