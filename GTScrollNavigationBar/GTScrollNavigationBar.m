@@ -139,7 +139,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     CGRect frame = self.frame;
     CGFloat alpha = 1.0f;
     CGFloat maxY = [self statusBarTopOffset];
-    CGFloat minY = maxY - CGRectGetHeight(frame) + 1.0f;
+    CGFloat minY = maxY - CGRectGetHeight(frame) + 1.0f + self.padding;
     // NOTE: plus 1px to prevent the navigation bar disappears in iOS < 7
     
     bool isScrolling = (self.scrollState == GTScrollNavigationBarScrollingUp ||

@@ -19,6 +19,7 @@ typedef enum {
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (strong, nonatomic) NSArray *alphaIgnoredClasses;
 @property (assign, nonatomic) GTScrollNavigationBarState scrollState;
+@property (assign, nonatomic) CGFloat padding;
 
 /**
  * @deprecated use resetToDefaultPositionWithAnimation: instead
